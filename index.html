@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0f1720">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Jalan">
+<title>Jalan</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="map"></div>
+
+<header id="top">
+  <form id="searchForm" autocomplete="off">
+    <input id="q" type="search" placeholder="Where to?" enterkeyhint="search" aria-label="Search destination">
+    <button type="submit" aria-label="Search">⌕</button>
+  </form>
+  <span id="net" class="pill"></span>
+  <ul id="results" hidden></ul>
+</header>
+
+<section id="banner" hidden>
+  <div id="bArrow"></div>
+  <div class="bText"><div id="bDist"></div><div id="bInstr"></div></div>
+</section>
+<div id="alertToast" hidden></div>
+<div id="toast" hidden></div>
+
+<div id="fabs">
+  <button id="btnLocate" class="fab" aria-label="Follow my location">◎</button>
+  <button id="btnReport" class="fab report" aria-label="Report something">!</button>
+</div>
+
+<section id="sheet">
+  <div id="sheetIdle">
+    <div class="row4">
+      <button data-open="places">★<span>Places</span></button>
+      <button data-open="routes">⬇<span>Offline routes</span></button>
+      <button data-open="reports">⚠<span>Reports</span></button>
+      <button data-open="settings">⚙<span>Settings</span></button>
+    </div>
+    <p id="hint" class="muted">Search, or long-press the map to drop a destination.</p>
+  </div>
+
+  <div id="sheetPreview" hidden>
+    <h2 id="pvName"></h2>
+    <p id="pvMeta" class="muted"></p>
+    <div id="dlProgress" hidden><div class="bar"><i></i></div><span></span></div>
+    <div class="btns">
+      <button id="btnGo" class="primary">Start</button>
+      <button id="btnSaveRoute">⬇ Offline</button>
+      <button id="btnSavePlace" aria-label="Save place">★</button>
+      <button id="btnCancel" class="ghost" aria-label="Cancel">✕</button>
+    </div>
+  </div>
+
+  <div id="sheetNav" hidden>
+    <div class="navStats">
+      <div><b id="nvEta">--:--</b><small>arrive</small></div>
+      <div><b id="nvTime">--</b><small>min</small></div>
+      <div><b id="nvDist">--</b><small>km</small></div>
+      <div class="speed"><b id="nvSpeed">0</b><small>km/h</small></div>
+    </div>
+    <div class="btns">
+      <button id="btnMute" aria-label="Mute voice">🔊</button>
+      <button id="btnOverview">Overview</button>
+      <button id="btnEnd" class="danger">End</button>
+    </div>
+  </div>
+</section>
+
+<div id="panel" hidden>
+  <div class="panelHead"><h2 id="panelTitle"></h2><button id="panelClose" class="ghost" aria-label="Close">✕</button></div>
+  <div id="panelBody"></div>
+</div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
